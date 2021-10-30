@@ -100,3 +100,66 @@ Route :: get('biodata/{nama?}/{alamat?}/{jk?}/{tb?}/{bb?}', function (
     });
 
 
+//mengakses data melalui model
+Route::get('testmodel', function () {
+    $query = App\Models\Post::all();
+    return $query;
+});
+
+Route::get('testmodel/{id}', function ($id) {
+    $query = App\Models\Post::find($id);
+    return $query;
+});
+
+Route::get('testmodel-cari/{search}', function ($s) {
+    $query = App\Models\Post::where('title', 'like', '%$s%')->get();
+    return $query;
+});
+
+Route::get('testmodel-update', function(){
+    $query = App\Models\Post::find(2);
+    $query -> title = "Sholawat Penghapus Maksiat";
+    $query -> title = "Bane Si Bajak Laut";
+    $query->save();
+    return $query;
+});
+
+// menambah data baru
+Route::get('testmodel-add', function(){
+    $query = App\Models\Post::find();
+    $query -> title = "Sholawat Penghapus Maksiat";
+    $query -> title = "Lorem Ipsum si amet dolor";
+    $query->save();
+    return $query;
+});
+
+Route::get('testmodel-delete/{id]}', function(){
+    $query = App\Models\Post::find($id);
+    $query->delete();
+    return $query;
+});
+
+Route::get('barang', function () {
+    $barang = App\Models\Barang::all();
+    return $barang;
+});
+
+Route::get('pembelian', function () {
+    $pembelian = App\Models\pembelian::all();
+    return $pembelian;
+});
+
+Route::get('pembeli', function () {
+    $pembeli = App\Models\pembeli::all();
+    return $pembeli;
+});
+
+Route::get('pesanan', function () {
+    $query = App\Models\pesanan::all();
+    return $pesanan;
+});
+
+Route::get('suplier', function () {
+    $suplier = App\Models\suplier::all();
+    return $suplier;
+});
